@@ -15,9 +15,9 @@ export default function Footer() {
           <a href="https://github.com/Curzyori/velnime" target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center transition-colors hover:text-ink">
             GitHub
           </a>
-          <a href="https://www.craftvel.com/api" target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center transition-colors hover:text-ink">
-            API
-          </a>
+          <Link href="/docs" className="flex min-h-11 items-center transition-colors hover:text-ink">
+            Docs
+          </Link>
           <Link href="/privacy" className="flex min-h-11 items-center transition-colors hover:text-ink">
             Privacy
           </Link>
