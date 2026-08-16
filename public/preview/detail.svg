@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="960" viewBox="0 0 540 960">
+  <rect width="540" height="960" fill="#0F0F1A"/>
+  <!-- back + title -->
+  <path d="M40 104 l-14 14 14 14" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <text x="76" y="118" font-family="sans-serif" font-weight="bold" font-size="26" fill="#FFFFFF">Detail Anime</text>
+  <!-- backdrop -->
+  <rect x="0" y="150" width="540" height="240" fill="#FF6B1A" opacity="0.3"/>
+  <rect x="28" y="330" width="160" height="230" rx="14" fill="#1A1A2E" stroke="#FF6B1A" stroke-width="3"/>
+  <text x="212" y="392" font-family="sans-serif" font-weight="bold" font-size="28" fill="#FFFFFF">Solo Leveling</text>
+  <text x="214" y="428" font-family="sans-serif" font-size="17" fill="#FF6B1A">★ 8.9</text>
+  <text x="214" y="462" font-family="sans-serif" font-size="17" fill="#CFCFDD">Action • Fantasy • 2024</text>
+  <rect x="212" y="500" width="130" height="44" rx="22" fill="#FF6B1A"/>
+  <text x="238" y="528" font-family="sans-serif" font-weight="bold" font-size="18" fill="#0F0F1A">▶ Nonton</text>
+  <circle cx="380" cy="522" r="22" fill="#1A1A2E" stroke="#FF6B1A"/>
+  <circle cx="460" cy="522" r="22" fill="#1A1A2E" stroke="#FF6B1A"/>
+  <!-- synopsis -->
+  <rect x="28" y="590" width="484" height="110" rx="14" fill="#1A1A2E"/>
+  <text x="48" y="628" font-family="sans-serif" font-size="17" fill="#CFCFDD">Sung Jin-woo, hunter E-rank, bangkit jadi</text>
+  <text x="48" y="656" font-family="sans-serif" font-size="17" fill="#CFCFDD">Shadow Monarch setelah System muncul.</text>
+  <!-- episode list -->
+  <text x="28" y="748" font-family="sans-serif" font-weight="bold" font-size="24" fill="#FFFFFF">Episode</text>
+  <rect x="28" y="768" width="484" height="54" rx="12" fill="#1A1A2E"/>
+  <text x="52" y="802" font-family="sans-serif" font-size="18" fill="#FFFFFF">Episode 1</text>
+  <rect x="28" y="834" width="484" height="54" rx="12" fill="#1A1A2E"/>
+  <text x="52" y="868" font-family="sans-serif" font-size="18" fill="#FFFFFF">Episode 2</text>
+</svg>
