@@ -32,12 +32,3 @@ npm run build
 # 3. Lint & format check
 npm run lint
 ```
-
----
-
-## Referensi Operasional Topologi
-
-- **Landing Page (`www.velnime.com`):** Serves di Vercel — ZERO touch ke server backend/VPS.
-- **Donate API (`api.velnime.com`):** Backend non-anime (donate/webhook/stats) — domain-based.
-- **Buyer API (`api.craftvel.com`):** API Gateway buyer (thin proxy) — domain-based.
-- **Stream/Catalog Worker:** Stream worker resolve + pipe video (unlimited bandwidth) — internal, tidak exposed publik.
