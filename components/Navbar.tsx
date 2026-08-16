@@ -11,6 +11,9 @@ const LINKS = [
   { href: '/docs', label: 'Docs' },
 ];
 
+// Anime API = produk jualan (Craftvel). Comic API dihapus (backend mati).
+const API_LINK = { href: 'https://www.craftvel.com/api/velnime-anime-api', label: 'Anime API' };
+
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -40,6 +43,14 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
+          <a
+            href={API_LINK.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-medium text-inkDim transition-colors duration-200 hover:bg-surface hover:text-ink"
+          >
+            {API_LINK.label}
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -72,6 +83,15 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
+            <a
+              href={API_LINK.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="flex min-h-12 items-center rounded-lg px-3 text-sm font-medium text-inkDim transition-colors hover:bg-surface hover:text-ink"
+            >
+              {API_LINK.label}
+            </a>
           </div>
         </div>
       )}
