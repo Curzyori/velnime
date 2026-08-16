@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /donate
+
+Sitemap: https://www.velnime.com/sitemap.xml

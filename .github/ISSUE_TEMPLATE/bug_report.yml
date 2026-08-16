@@ -1,0 +1,43 @@
+name: Laporan Bug / Masalah
+description: Laporkan masalah pada aplikasi Velnime (video tidak jalan, error, dll)
+title: "[Report] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Terima kasih sudah melaporkan! Isi detail di bawah ya.
+  - type: input
+    id: konteks
+    attributes:
+      label: Konteks
+      description: "Anime & episode yang bermasalah (contoh: One Piece Eps 2)"
+      placeholder: "Contoh: One Piece Eps 2"
+    validations:
+      required: true
+  - type: textarea
+    id: masalah
+    attributes:
+      label: Masalah
+      description: "Jelaskan masalah yang terjadi"
+      placeholder: "Contoh: Video tidak mau diputar, buffering terus, layar hitam..."
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: Perangkat
+      description: "HP/emulator yang dipakai"
+      options:
+        - Realme C15 (RMX2195)
+        - HP lain (Android)
+        - Emulator
+        - Lainnya
+    validations:
+      required: true
+  - type: input
+    id: versi
+    attributes:
+      label: Versi Aplikasi
+      description: "Versi yang dipakai (lihat di pengaturan)"
+      placeholder: "contoh: 1.0.2"
