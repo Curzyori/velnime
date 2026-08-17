@@ -90,6 +90,7 @@ export default function DonatePage() {
   const [error, setError] = useState('');
   const [qr, setQr] = useState<DonateResponse | null>(null);
   const [remaining, setRemaining] = useState(0);
+  const [successData, setSuccessData] = useState<{ amount: number; name?: string } | null>(null);
   const [topDonations, setTopDonations] = useState<TopDonation[]>([]);
   const [topState, setTopState] = useState<'loading' | 'ready' | 'error'>('loading');
 
@@ -145,6 +146,39 @@ export default function DonatePage() {
       document.removeEventListener('visibilitychange', onVis);
     };
   }, [qr]);
+
+  // Polling status order tiap 3 detik saat QR aktif.
+  // Begitu completed -> trigger success state + reload papan top donatur.
+  useEffect(() => {
+    if (!qr) return;
+    const orderId = qr.order_id;
+    const donatedAmount = qr.amount;
+    let stopped = false;
+
+    const poll = async () => {
+      if (stopped || document.visibilityState !== 'visible') return;
+      try {
+        const res = await fetch(`${API_BASE}/donate/status/${encodeURIComponent(orderId)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.status === 'completed') {
+          stopped = true;
+          setSuccessData({ amount: donatedAmount, name: donorName || undefined });
+          setQr(null);
+          setRemaining(0);
+          loadTop();
+        }
+      } catch {
+        // silent fail, retry di interval berikutnya
+      }
+    };
+
+    const intervalId = setInterval(poll, 3000);
+    return () => {
+      stopped = true;
+      clearInterval(intervalId);
+    };
+  }, [qr, donorName, loadTop]);
 
   const submitRef = useRef(false);
 
@@ -205,9 +239,29 @@ export default function DonatePage() {
           </p>
         </div>
 
-        {/* QR Payment or Form */}
+        {/* QR Payment, Success State, or Form */}
         <div className="mt-10 rounded-2xl border border-white/5 bg-surface p-6 sm:p-8">
-          {qr ? (
+          {successData ? (
+            <div className="flex flex-col items-center py-4 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-3xl text-emerald-400">
+                ✓
+              </div>
+              <h2 className="font-display mt-4 text-2xl font-bold text-ink">
+                Terima Kasih Banyak! 💖
+              </h2>
+              <p className="mt-2 max-w-md text-sm text-inkDim">
+                Donasi sebesar <span className="font-bold text-accent">{fmtIDR(successData.amount)}</span>{' '}
+                {successData.name ? `dari ${successData.name} ` : ''}sudah kami terima. Dukunganmu sangat berarti untuk menjaga server tetap hidup & bebas iklan!
+              </p>
+              <button
+                type="button"
+                onClick={() => setSuccessData(null)}
+                className="mt-6 cursor-pointer rounded-xl bg-accent px-6 py-2.5 font-display text-sm font-bold text-canvas transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Donasi Lagi
+              </button>
+            </div>
+          ) : qr ? (
             <QrPayment
               qr={qr}
               remaining={remaining}
