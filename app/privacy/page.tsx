@@ -20,7 +20,7 @@ export default function PrivacyPage() {
     <div className="flex min-h-[100dvh] flex-col">
       <div className="mx-auto w-full max-w-3xl flex-1 px-4 py-12 sm:px-6">
         <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">Kebijakan Privasi</h1>
-        <p className="mt-2 text-sm text-inkDim">Terakhir diperbarui: Agustus 2026</p>
+        <p className="mt-2 text-sm text-inkDim">Terakhir diperbarui: 20 Agustus 2026</p>
 
         <div className="mt-10 space-y-8 text-sm leading-relaxed text-inkDim">
           <Section title="Data yang Dikumpulkan">
