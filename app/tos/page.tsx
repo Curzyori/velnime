@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Syarat & Ketentuan',
-  description: 'Syarat dan ketentuan penggunaan aplikasi Velnime: streaming anime dan baca komik.',
+  description: 'Syarat dan ketentuan penggunaan aplikasi Velnime: streaming anime Jepang dan donghua China.',
   alternates: { canonical: '/tos' },
   openGraph: {
     title: 'Syarat & Ketentuan — Velnime',
@@ -20,13 +20,13 @@ export default function TosPage() {
     <div className="flex min-h-[100dvh] flex-col">
       <div className="mx-auto w-full max-w-3xl flex-1 px-4 py-12 sm:px-6">
         <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">Syarat & Ketentuan</h1>
-        <p className="mt-2 text-sm text-inkDim">Terakhir diperbarui: Agustus 2026</p>
+        <p className="mt-2 text-sm text-inkDim">Terakhir diperbarui: 20 Agustus 2026</p>
 
         <div className="mt-10 space-y-8 text-sm leading-relaxed text-inkDim">
           <Section title="Penggunaan Layanan">
             <p>
               Dengan menggunakan Velnime, kamu menyetujui syarat berikut. Velnime menyediakan layanan
-              streaming anime dan baca komik untuk penggunaan pribadi dan non-komersial.
+              streaming anime Jepang dan donghua China untuk penggunaan pribadi dan non-komersial.
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5">
               <li>Dilarang menggunakan layanan untuk tujuan ilegal atau melanggar hukum yang berlaku.</li>
@@ -52,7 +52,7 @@ export default function TosPage() {
 
           <Section title="Hak Kekayaan Intelektual">
             <p>
-              Seluruh konten (anime, komik, poster) adalah milik pemegang hak masing-masing.
+              Seluruh konten (anime, donghua, poster) adalah milik pemegang hak masing-masing.
               Velnime hanya menyediakan tautan streaming dari sumber yang tersedia publik dan
               menghormati permintaan penghapusan melalui halaman DMCA.
             </p>

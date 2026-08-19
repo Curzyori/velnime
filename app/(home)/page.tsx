@@ -11,11 +11,11 @@ export default function HomePage() {
             Gratis · Tanpa Iklan · Open Source
           </span>
           <h1 className="font-display max-w-3xl text-4xl font-bold leading-[1.05] tracking-tighter sm:text-6xl">
-            Streaming anime & baca komik,
+            Streaming anime & donghua,
             <span className="text-accent"> tanpa gangguan.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-inkDim sm:text-lg">
-            Velnime adalah aplikasi Android untuk nonton anime dan baca komik secara gratis.
+            Velnime adalah aplikasi Android untuk nonton anime Jepang dan donghua China secara gratis.
             Koleksi lengkap, update cepat, dan pengalaman bebas iklan.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
@@ -47,9 +47,9 @@ export default function HomePage() {
               desc="Player bawaan dengan kualitas pilihan, dari 360p sampai full HD. Free sampai 720p, supporter sampai 1080p. Lanjutkan nonton di episode terakhir."
             />
             <FeatureCard
-              icon="📚"
-              title="Komik Lengkap"
-              desc="Baca manga dan manhwa favoritmu dengan pembaca nyaman, mode gelap, dan riwayat otomatis."
+              icon="🐉"
+              title="Donghua Lengkap"
+              desc="Nonton donghua China 3D favoritmu dengan streaming HLS sampai full HD. Ratusan judul, update cepat."
             />
             <FeatureCard
               icon="🚫"
@@ -83,7 +83,7 @@ export default function HomePage() {
             Desain bersih, mode gelap, dan navigasi simpel — langsung dari aplikasinya.
           </p>
           <div className="mt-14 grid gap-8 sm:grid-cols-3">
-            <PreviewCard title="Home" desc="Anime & komik terbaru di satu layar." img="/preview/home.svg" />
+            <PreviewCard title="Home" desc="Anime & donghua terbaru di satu layar." img="/preview/home.svg" />
             <PreviewCard title="Detail" desc="Info lengkap, episode, dan rekomendasi." img="/preview/detail.svg" />
             <PreviewCard title="Player" desc="Streaming mulus dengan kontrol lengkap." img="/preview/player.svg" />
           </div>

@@ -46,8 +46,8 @@ export default function DocsPage() {
 
           <Section title="Cara Pakai">
             <ul className="list-disc space-y-2 pl-5">
-              <li><strong>Anime</strong> — jelajahi daftar anime, filter berdasarkan status atau genre. Bisa tanpa login (guest).</li>
-              <li><strong>Comic</strong> — baca manga dan manhwa dengan pembaca bawaan. <em>Coming soon</em> — belum tersedia di rilis awal.</li>
+              <li><strong>Anime</strong> — jelajahi daftar anime Jepang, filter berdasarkan status atau genre. Bisa tanpa login (guest).</li>
+              <li><strong>Donghua</strong> — nonton donghua China 3D dengan streaming HLS multi-kualitas, tab terpisah di beranda.</li>
               <li><strong>Library</strong> — akses riwayat dan favorit kamu (butuh login untuk sync antar perangkat).</li>
               <li><strong>Support</strong> — donasi untuk mendukung pengembangan, dan buka status supporter.</li>
             </ul>
@@ -73,7 +73,7 @@ export default function DocsPage() {
 
           <Section title="Changelog">
             <ul className="list-disc space-y-2 pl-5">
-              <li><strong>v1.0.0</strong> — Rilis awal: streaming anime, baca komik, donasi QRIS.</li>
+              <li><strong>v1.0.0</strong> — Rilis awal: streaming anime Jepang & donghua China, donasi QRIS.</li>
               <li><strong>Beta</strong> — Player native, library, pencarian, genre.</li>
             </ul>
           </Section>

@@ -12,13 +12,13 @@ const SITE_URL = 'https://www.velnime.com';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Velnime — Anime & Comic Gratis',
+    default: 'Velnime — Anime & Donghua Gratis',
     template: '%s — Velnime',
   },
-  description: 'Streaming anime dan baca komik gratis, bebas iklan. Koleksi lengkap, update cepat. Dukung pengembangan Velnime.',
+  description: 'Streaming anime Jepang dan donghua China gratis, bebas iklan. Koleksi lengkap, update cepat. Dukung pengembangan Velnime.',
   openGraph: {
-    title: 'Velnime — Anime & Comic Gratis',
-    description: 'Streaming anime dan baca komik gratis, bebas iklan.',
+    title: 'Velnime — Anime & Donghua Gratis',
+    description: 'Streaming anime Jepang dan donghua China gratis, bebas iklan.',
     url: SITE_URL,
     siteName: 'Velnime',
     type: 'website',
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Velnime — Anime & Comic Gratis',
-    description: 'Streaming anime dan baca komik gratis, bebas iklan.',
+    title: 'Velnime — Anime & Donghua Gratis',
+    description: 'Streaming anime Jepang dan donghua China gratis, bebas iklan.',
     images: ['/og.png'],
   },
   robots: { index: true, follow: true },
@@ -58,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         applicationCategory: 'EntertainmentApplication',
         operatingSystem: 'Android',
         url: SITE_URL,
-        description: 'Streaming anime dan baca komik gratis, bebas iklan.',
+        description: 'Streaming anime Jepang dan donghua China gratis, bebas iklan.',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'IDR' },
       },
     ],
