@@ -59,7 +59,12 @@ export default function HomePage() {
             <FeatureCard
               icon="⚡"
               title="Update Cepat"
-              desc="Episode baru muncul segera setelah rilis. Jadwal update harian yang konsisten."
+              desc="Episode baru muncul kurang dari 5 menit setelah rilis. Jadwal update harian yang konsisten."
+            />
+            <FeatureCard
+              icon="🤖"
+              title="Bot Komunitas"
+              desc="Update rilis otomatis ke channel Discord atau Telegram kamu, gratis via feed API publik."
             />
             <FeatureCard
               icon="🔒"
