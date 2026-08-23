@@ -79,21 +79,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Preview */}
-        <section id="preview" className="scroll-mt-24 py-16 sm:py-24">
-          <h2 className="font-display text-center text-3xl font-bold tracking-tight sm:text-4xl">
-            Lihat <span className="text-accent">Tampilannya</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-center text-inkDim">
-            Desain bersih, mode gelap, dan navigasi simpel — langsung dari aplikasinya.
-          </p>
-          <div className="mt-14 grid gap-8 sm:grid-cols-3">
-            <PreviewCard title="Home" desc="Anime & donghua terbaru di satu layar." img="/preview/home.svg" />
-            <PreviewCard title="Detail" desc="Info lengkap, episode, dan rekomendasi." img="/preview/detail.svg" />
-            <PreviewCard title="Player" desc="Streaming mulus dengan kontrol lengkap." img="/preview/player.svg" />
-          </div>
-        </section>
-
         {/* CTA */}
         <section className="py-16 sm:py-24">
           <div className="rounded-2xl border border-accent/20 bg-surface p-10 text-center sm:p-16">
@@ -124,25 +109,6 @@ function FeatureCard({ icon, title, desc }: { icon: string; title: string; desc:
       </div>
       <h3 className="font-display text-lg font-bold">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-inkDim">{desc}</p>
-    </div>
-  );
-}
-
-function PreviewCard({ title, desc, img }: { title: string; desc: string; img: string }) {
-  return (
-    <div className="overflow-hidden rounded-xl border border-white/5 bg-surface">
-      {/* SEO-2: preview asli — mirror UI app (dark + accent), bukan placeholder kosong */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={img}
-        alt={`Preview layar ${title} aplikasi Velnime`}
-        loading="lazy"
-        className="aspect-[9/16] w-full bg-surfaceSoft object-cover"
-      />
-      <div className="p-4">
-        <h3 className="font-display text-sm font-bold">{title}</h3>
-        <p className="mt-1 text-xs text-inkDim">{desc}</p>
-      </div>
     </div>
   );
 }
