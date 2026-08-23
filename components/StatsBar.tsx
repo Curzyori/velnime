@@ -7,6 +7,12 @@ const API_BASE = 'https://api.velnime.com/v1';
 interface Stats {
   users: number;
   downloads: number;
+  total_views: number;
+  catalog?: {
+    total_anime: number;
+    total_donghua: number;
+    total_episodes: number;
+  };
 }
 
 function fmtNum(n: number) {
@@ -56,7 +62,13 @@ export default function StatsBar() {
     );
   }
 
+  const totalTitles =
+    (stats.catalog?.total_anime ?? 0) + (stats.catalog?.total_donghua ?? 0);
+  const totalEpisodes = stats.catalog?.total_episodes ?? 0;
+
   const items = [
+    ...(totalTitles > 0 ? [{ value: fmtNum(totalTitles), label: 'Judul Anime & Donghua' }] : []),
+    ...(totalEpisodes > 0 ? [{ value: fmtNum(totalEpisodes), label: 'Episode Siap Tonton' }] : []),
     ...(stats.users > 0 ? [{ value: fmtNum(stats.users), label: 'Pengguna Aktif' }] : []),
     { value: fmtNum(stats.downloads), label: 'Download APK' },
   ];
