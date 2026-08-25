@@ -69,17 +69,15 @@ export default function DownloadsPage() {
 
           {/* Primary Download Button */}
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="https://github.com/Curzyori/velnime/releases/latest"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center gap-2.5 rounded-xl bg-accent px-8 py-3.5 font-display text-base font-bold text-canvas transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            <span
+              className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/10 bg-surface px-8 py-3.5 font-display text-base font-bold text-inkDim cursor-not-allowed"
+              title="Aplikasi sedang dalam tahap persiapan rilis publik"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span>Download APK v2.0.1 (Latest)</span>
-            </a>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Aplikasi Segera Rilis</span>
+            </span>
           </div>
-          <p className="mt-3 text-xs text-inkDim">Kompatibel dengan Android 8.0 (Oreo) ke atas · Ukuran ~25 MB</p>
+          <p className="mt-3 text-xs text-inkDim">Tahap audit &amp; finalisasi sistem sedang berlangsung · Pantau untuk jadwal rilis</p>
         </section>
 
         {/* Release History & Changelog */}
