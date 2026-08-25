@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'API — Feed Notifikasi Anime & Donghua',
+  title: 'API Developer — Feed Notifikasi & Katalog Velnime',
   description:
-    'API feed publik Velnime untuk bot Discord, Telegram, dan RSS. Notifikasi rilis episode anime & donghua gratis, tanpa API key.',
+    'Dokumentasi API publik Velnime: Transparansi Stats API, Real-time Feed Updates, dan Akses B2B Katalog Anime & Donghua via Craftvel.',
   alternates: { canonical: '/api' },
   openGraph: {
-    title: 'API — Feed Notifikasi Anime & Donghua',
-    description: 'Feed rilis episode realtime untuk bot Discord & Telegram. Gratis, tanpa API key.',
+    title: 'API Developer — Feed Notifikasi & Katalog Velnime',
+    description: 'Feed rilis episode realtime & akses katalog anime/donghua multi-resolusi.',
     url: 'https://www.velnime.com/api',
     siteName: 'Velnime',
     type: 'website',
@@ -16,199 +16,142 @@ export const metadata: Metadata = {
   },
 };
 
-const FEED_URL = 'https://api.velnime.com/v1/feed/updates';
-
 export default function ApiPage() {
   return (
     <div className="flex min-h-[100dvh] flex-col">
-      <div className="mx-auto w-full max-w-4xl flex-1 px-4 py-16 sm:px-6 sm:py-24">
-        {/* Hero */}
+      <div className="mx-auto w-full max-w-4xl flex-1 px-4 py-16 sm:px-6 sm:py-20">
+        
+        {/* Header Hero */}
         <section className="text-center">
-          <span className="mb-6 inline-block rounded-full border border-accent/30 bg-accentFaded px-4 py-1.5 text-xs font-semibold text-accent">
-            Publik · Gratis · Tanpa API Key
+          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accentFaded px-4 py-1.5 text-xs font-semibold text-accent">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            Developer API &amp; Feed Ecosystem
           </span>
-          <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tighter sm:text-5xl">
-            Feed notifikasi anime & donghua,
-            <span className="text-accent"> untuk bot kamu.</span>
+          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tighter sm:text-5xl">
+            Integrasi data anime &amp; donghua,
+            <span className="text-accent"> untuk aplikasi &amp; bot kamu.</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-inkDim sm:text-lg">
-            Episode baru rilis di Velnime langsung tersedia via feed API. Cocok untuk bot Discord,
-            bot Telegram, RSS reader, atau widget website komunitas.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-inkDim sm:text-lg">
+            Gunakan API publik gratis untuk kebutuhan bot Discord &amp; Telegram, atau akses katalog komersial berkecepatan tinggi melalui Craftvel API Gateway.
           </p>
         </section>
 
-        {/* Endpoint */}
-        <section className="mt-14">
-          <h2 className="font-display text-2xl font-bold tracking-tight">Endpoint</h2>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-surfaceSoft p-4">
-            <code className="text-sm text-accent">GET {FEED_URL}?type=all&amp;limit=20</code>
-          </div>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            <Param name="type" desc="all · anime · donghua" />
-            <Param name="limit" desc="Jumlah item, maks 50" />
-            <Param name="auth" desc="Tidak perlu — publik" />
-          </div>
-        </section>
+        {/* 3 API Cards Section */}
+        <div className="mt-14 space-y-12">
+          
+          {/* API 1: Real-time Feed Updates */}
+          <section className="rounded-2xl border border-white/10 bg-surface p-6 sm:p-8">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accentFaded text-accent">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+                </div>
+                <div>
+                  <h2 className="font-display text-xl font-bold text-ink">1. Real-time Feed Updates API</h2>
+                  <p className="text-xs text-inkDim">Publik · Gratis · Polling Otomatis</p>
+                </div>
+              </div>
+              <span className="rounded-md bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">
+                GRATIS
+              </span>
+            </div>
 
-        {/* Response example */}
-        <section className="mt-12">
-          <h2 className="font-display text-2xl font-bold tracking-tight">Contoh Response</h2>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-[#0B0B14] p-5">
-            <pre className="text-xs leading-relaxed text-inkDim">
-{`{
-  "ok": true,
-  "total": 2,
-  "items": [
-    {
-      "id": "re-zero-s4-episode-14",
-      "title": "Re:Zero kara Hajimeru Isekai Seikatsu Season 4",
-      "anime_slug": "re-zero-kara-hajimeru-isekai-seikatsu-season-4",
-      "episode_number": 14,
-      "episode_title": "Episode 14",
-      "type": "anime",
-      "poster_url": "https://api.velnime.com/v1/poster/anime/re-zero-s4.webp?s=ff77569292a6ba17",
-      "download_app_url": "https://velnime.com",
-      "released_at": "August 23, 2026"
-    }
-  ]
-}`}
-            </pre>
-          </div>
-        </section>
-
-        {/* Quick start */}
-        <section className="mt-12">
-          <h2 className="font-display text-2xl font-bold tracking-tight">Quick Start</h2>
-          <p className="mt-3 text-sm text-inkDim">
-            Pola paling simpel: poll tiap 3 menit → bandingkan dengan ID terakhir yang kamu simpan →
-            kirim item baru ke channel kamu.
-          </p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-[#0B0B14] p-5">
-            <pre className="text-xs leading-relaxed text-inkDim">
-{`// Node.js — contoh poller (Discord webhook)
-let lastId = null; // simpan persisten di produksi
-
-setInterval(async () => {
-  const res = await fetch(
-    '${FEED_URL}?limit=10'
-  ).then((r) => r.json());
-
-  const fresh = lastId
-    ? res.items.filter((i) => /* sampai ketemu lastId */ false)
-    : [];
-
-  for (const item of fresh.reverse()) {
-    await fetch(process.env.DISCORD_WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        embeds: [{
-          title: \`\${item.title} — \${item.episode_title}\`,
-          description: 'Baru rilis di Velnime!',
-          image: { url: item.poster_url },
-          color: item.type === 'donghua' ? 0xe63946 : 0x457b9d,
-        }],
-      }),
-    });
-  }
-
-  if (res.items.length) lastId = res.items[0].id;
-}, 3 * 60 * 1000);`}
-            </pre>
-          </div>
-        </section>
-
-        {/* Use cases */}
-        <section className="mt-12">
-          <h2 className="font-display text-2xl font-bold tracking-tight">Use Case</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <UseCase
-              icon="🤖"
-              title="Bot Discord"
-              desc="Post embed card otomatis tiap episode baru ke channel #update-anime atau #update-donghua."
-            />
-            <UseCase
-              icon="📨"
-              title="Bot Telegram"
-              desc="Kirim broadcast ke channel/grup komunitas dengan poster dan link download app."
-            />
-            <UseCase
-              icon="📰"
-              title="RSS Reader"
-              desc="Ubah feed jadi sumber RSS custom untuk aplikasi reader favoritmu."
-            />
-            <UseCase
-              icon="🌐"
-              title="Widget Website"
-              desc="Tampilkan episode terbaru di website komunitas anime kamu."
-            />
-          </div>
-        </section>
-
-        {/* Craftvel CTA */}
-        <section className="mt-14">
-          <div className="rounded-2xl border border-accent/20 bg-surface p-8 text-center sm:p-12">
-            <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
-              Butuh lebih dari notifikasi?
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-inkDim sm:text-base">
-              Katalog lengkap 2.434 judul &amp; 39.151 episode, pencarian, detail, dan streaming
-              multi-kualitas hingga 1080p — tersedia via{' '}
-              <strong className="text-ink">Velnime Anime API</strong> di Craftvel.
+            <p className="mt-4 text-sm text-inkDim">
+              Menyajikan episode anime dan donghua yang baru saja rilis. Sangat cocok untuk bot notifikasi Discord, Telegram channel, atau RSS reader komunitas.
             </p>
-            <a
-              href="https://www.craftvel.com/api/velnime-anime-api"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-block rounded-xl bg-accent px-8 py-3.5 font-display text-sm font-bold text-canvas transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Lihat Paket &amp; Harga
-            </a>
-          </div>
-        </section>
 
-        {/* Terms */}
-        <section className="mt-12">
-          <h2 className="font-display text-2xl font-bold tracking-tight">Batas Penggunaan</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-inkDim">
-            <li>Rate limit 60 request/menit per IP — poll tiap 3 menit sudah lebih dari cukup.</li>
-            <li>Feed hanya berisi metadata rilis. Dilarang scraping massal katalog.</li>
-            <li>
-              Butuh akses katalog penuh? Gunakan{' '}
+            <div className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-surfaceSoft p-4">
+              <code className="text-sm text-accent">GET https://api.velnime.com/v1/feed/updates?type=all&amp;limit=20</code>
+            </div>
+
+            <div className="mt-4 grid gap-3 sm:grid-cols-3 text-xs">
+              <div className="rounded-lg border border-white/5 bg-canvas/60 p-3">
+                <span className="font-bold text-ink">type</span>: all · anime · donghua
+              </div>
+              <div className="rounded-lg border border-white/5 bg-canvas/60 p-3">
+                <span className="font-bold text-ink">limit</span>: default 20, max 50
+              </div>
+              <div className="rounded-lg border border-white/5 bg-canvas/60 p-3">
+                <span className="font-bold text-ink">Cache</span>: CDN Edge 3 Menit
+              </div>
+            </div>
+          </section>
+
+          {/* API 2: Transparan Stats API */}
+          <section className="rounded-2xl border border-white/10 bg-surface p-6 sm:p-8">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accentFaded text-accent">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                </div>
+                <div>
+                  <h2 className="font-display text-xl font-bold text-ink">2. Transparan Stats API</h2>
+                  <p className="text-xs text-inkDim">Publik · Gratis · Real-time Platform Metric</p>
+                </div>
+              </div>
+              <span className="rounded-md bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">
+                GRATIS
+              </span>
+            </div>
+
+            <p className="mt-4 text-sm text-inkDim">
+              Menyediakan data statistik transparansi platform secara realtime: total pengguna aktif, total jam tontonan, total episode, dan total donasi komunitas.
+            </p>
+
+            <div className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-surfaceSoft p-4">
+              <code className="text-sm text-accent">GET https://api.velnime.com/v1/stats</code>
+            </div>
+          </section>
+
+          {/* API 3: Commercial B2B Catalog & Stream (Craftvel Gateway) */}
+          <section className="relative overflow-hidden rounded-2xl border border-accent/40 bg-gradient-to-b from-surface via-surface to-accentFaded/30 p-6 sm:p-8">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-canvas">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div>
+                  <h2 className="font-display text-xl font-bold text-ink">3. Commercial Catalog &amp; Stream API (Craftvel)</h2>
+                  <p className="text-xs text-inkDim">B2B Gateway · SLA 99.9% · Dedicated Token</p>
+                </div>
+              </div>
+              <span className="rounded-md bg-accent px-3 py-1 text-xs font-bold text-canvas">
+                Mulai Rp 49.000 / bln
+              </span>
+            </div>
+
+            <p className="mt-4 text-sm leading-relaxed text-inkDim">
+              Dapatkan akses penuh ke basis data 2.434+ judul anime &amp; donghua, multi-resolusi 360p–1080p stream resolver, metadata episode lengkap, dan dedicated unmetered media proxy untuk website atau aplikasi streaming komersial Anda.
+            </p>
+
+            <div className="mt-6 rounded-xl border border-white/10 bg-[#0B0B14] p-4 text-xs font-mono text-inkDim">
+              <p className="text-accent font-bold mb-2">Endpoint Komersial yang Tersedia:</p>
+              <ul className="space-y-1.5 list-disc pl-4">
+                <li><code>GET /v1/anime/home</code> &amp; <code>GET /v1/donghua/home</code> — Full Aggregated Payload</li>
+                <li><code>GET /v1/poster/anime/:slug</code> &amp; <code>GET /v1/poster/donghua/:slug</code> — Opaque Signed CDN</li>
+                <li><code>GET /v1/stream/:episodeSlug</code> — Multi-server Resolver Bucket</li>
+                <li><code>GET /v1/download/:episodeSlug</code> — Direct Attachment Stream</li>
+              </ul>
+            </div>
+
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="text-xs text-inkDim">
+                Dikelola oleh <strong className="text-ink">Craftvel API Gateway</strong> · Jakarta &amp; SG Datacenter.
+              </div>
               <a
-                href="https://www.craftvel.com/api/velnime-anime-api"
+                href="https://api.craftvel.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent hover:underline"
+                className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 font-display text-sm font-bold text-canvas transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
               >
-                Velnime Anime API (Craftvel)
+                <span>Akses Craftvel API Gateway</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
-              .
-            </li>
-          </ul>
-        </section>
-      </div>
-    </div>
-  );
-}
+            </div>
+          </section>
 
-function Param({ name, desc }: { name: string; desc: string }) {
-  return (
-    <div className="rounded-xl border border-white/5 bg-surface p-4">
-      <p className="font-mono text-sm font-semibold text-accent">{name}</p>
-      <p className="mt-1 text-xs text-inkDim">{desc}</p>
-    </div>
-  );
-}
-
-function UseCase({ icon, title, desc }: { icon: string; title: string; desc: string }) {
-  return (
-    <div className="rounded-xl border border-white/5 bg-surface p-6 transition-colors duration-200 hover:border-accent/30 hover:bg-surfaceSoft">
-      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-surfaceSoft text-lg" aria-hidden="true">
-        {icon}
+        </div>
       </div>
-      <h3 className="font-display text-base font-bold">{title}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-inkDim">{desc}</p>
     </div>
   );
 }

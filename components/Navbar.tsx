@@ -8,6 +8,7 @@ const LINKS = [
   { href: '/', label: 'Beranda' },
   { href: '/api', label: 'API' },
   { href: '/docs', label: 'Docs' },
+  { href: '/downloads', label: 'Downloads' },
   { href: '/donate', label: 'Donasi' },
 ];
 
@@ -27,24 +28,29 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-canvas/80 backdrop-blur-md">
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-1 font-display text-lg font-bold tracking-tight" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex items-center gap-1.5 font-display text-lg font-bold tracking-tight" onClick={() => setOpen(false)}>
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, next/image unoptimized */}
-          <img src="/favicon.svg" alt="Velnime" width={32} height={32} className="rounded-lg" />
-          elnime.com
+          <img src="/favicon.svg" alt="Velnime" width={30} height={30} className="rounded-lg" />
+          <span className="bg-gradient-to-r from-white via-white/90 to-accent bg-clip-text text-transparent">velnime.com</span>
         </Link>
 
-        {/* Desktop */}
+        {/* Desktop Links */}
         <div className="hidden items-center gap-1 md:flex">
           {LINKS.map((l) => (
             <NavLink key={l.href} href={l.href} active={pathname === l.href}>
               {l.label}
             </NavLink>
           ))}
+          
+          {/* Update / Releases Material Icon Indicator */}
           <Link
-            href="/info"
-            className="flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-medium text-inkDim transition-colors duration-200 hover:bg-surface hover:text-ink"
+            href="/downloads"
+            title="Update & Versi Terbaru"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-inkDim transition-colors duration-200 hover:bg-surface hover:text-accent"
           >
-            Info
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+            </svg>
           </Link>
         </div>
 
@@ -66,8 +72,8 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div id="mobile-menu" className="border-t border-white/5 bg-canvas/95 px-4 pb-4 backdrop-blur-md md:hidden">
-          <div className="flex flex-col">
-            {[...LINKS, { href: '/info', label: 'Info' }].map((l) => (
+          <div className="flex flex-col pt-2">
+            {LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
@@ -90,7 +96,7 @@ function NavLink({ href, active, children }: { href: string; active: boolean; ch
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
-      className={`flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-surface hover:text-ink ${active ? 'text-accent' : 'text-inkDim'}`}
+      className={`flex min-h-10 items-center rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 hover:bg-surface hover:text-ink ${active ? 'bg-surfaceSoft text-accent' : 'text-inkDim'}`}
     >
       {children}
     </Link>

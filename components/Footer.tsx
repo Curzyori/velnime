@@ -5,16 +5,16 @@ export default function Footer() {
     <footer className="border-t border-white/5 py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6">
         <p className="text-sm text-inkDim">
-          © {new Date().getFullYear()} Velnime. Dibuat dengan 💖 oleh Curzy.{' '}
-          <span className="mx-1">·</span> Contact:{' '}
+          © {new Date().getFullYear()} Velnime. Dikembangkan oleh Curzy.{' '}
+          <span className="mx-1">·</span> Kontak:{' '}
           <a href="mailto:admin@velnime.com" className="transition-colors hover:text-ink">
             admin@velnime.com
           </a>
         </p>
         <div className="flex items-center gap-6 text-sm text-inkDim">
-          <a href="https://github.com/Curzyori/velnime" target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center transition-colors hover:text-ink">
-            GitHub
-          </a>
+          <Link href="/downloads" className="flex min-h-11 items-center transition-colors hover:text-ink">
+            Downloads
+          </Link>
           <Link href="/docs" className="flex min-h-11 items-center transition-colors hover:text-ink">
             Docs
           </Link>
@@ -27,6 +27,9 @@ export default function Footer() {
           <Link href="/dmca" className="flex min-h-11 items-center transition-colors hover:text-ink">
             DMCA
           </Link>
+          <a href="https://github.com/Curzyori/velnime" target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center transition-colors hover:text-ink">
+            GitHub
+          </a>
         </div>
       </div>
     </footer>

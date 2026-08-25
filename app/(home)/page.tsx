@@ -5,109 +5,125 @@ export default function HomePage() {
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <div className="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-6">
-        {/* Hero */}
-        <section className="flex flex-col items-center py-24 text-center sm:py-32">
-          <span className="mb-6 rounded-full border border-accent/30 bg-accentFaded px-4 py-1.5 text-xs font-semibold text-accent">
-            Gratis · Tanpa Iklan · Open Source
+        
+        {/* Hero Section */}
+        <section className="flex flex-col items-center py-20 text-center sm:py-28">
+          <span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accentFaded px-4 py-1.5 text-xs font-semibold text-accent">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            Gratis · Bebas Iklan · Tanpa Sensor
           </span>
-          <h1 className="font-display max-w-3xl text-4xl font-bold leading-[1.05] tracking-tighter sm:text-6xl">
-            Streaming anime & donghua,
+          <h1 className="font-display max-w-3xl text-4xl font-bold leading-[1.05] tracking-tighter sm:text-6xl text-ink">
+            Streaming anime &amp; donghua,
             <span className="text-accent"> tanpa gangguan.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-inkDim sm:text-lg">
-            Velnime adalah aplikasi Android untuk nonton anime Jepang dan donghua China secara gratis.
-            Koleksi lengkap, update cepat, dan pengalaman bebas iklan.
+            Velnime adalah aplikasi Android untuk menonton anime Jepang dan donghua China 3D secara gratis.
+            Koleksi 2.400+ judul lengkap, multi-resolusi hingga 1080p, dan pengalaman 100% bebas iklan.
           </p>
+          
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+            <a
+              href="https://github.com/Curzyori/velnime/releases/latest"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-accent px-8 py-3.5 font-display text-sm font-bold text-canvas transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download APK v2.0.1</span>
+            </a>
             <Link
               href="/donate"
-              className="rounded-xl bg-accent px-8 py-3.5 font-display text-sm font-bold text-canvas transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex min-h-12 items-center rounded-xl border border-white/10 bg-surface px-8 py-3.5 font-display text-sm font-bold text-ink transition-colors duration-200 hover:bg-surfaceSoft"
             >
               Dukung Velnime
             </Link>
-            <span
-              className="rounded-xl border border-white/10 bg-surface px-8 py-3.5 font-display text-sm font-bold text-inkDim"
-              title="APK belum rilis — pantau GitHub"
-            >
-              Segera Rilis
-            </span>
           </div>
+          
           <StatsBar />
         </section>
 
-        {/* Fitur */}
-        <section id="fitur" className="scroll-mt-24 py-16 sm:py-24">
-          <h2 className="font-display text-center text-3xl font-bold tracking-tight sm:text-4xl">
-            Kenapa <span className="text-accent">Velnime</span>?
+        {/* Fitur Grid Section (No Emoji, Pure Material SVG Icons) */}
+        <section id="fitur" className="scroll-mt-24 py-16 sm:py-24 border-t border-white/5">
+          <h2 className="font-display text-center text-3xl font-bold tracking-tight sm:text-4xl text-ink">
+            Kenapa Memilih <span className="text-accent">Velnime</span>?
           </h2>
+          
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <FeatureCard
-              icon="▶"
-              title="Streaming Lancar"
-              desc="Player bawaan dengan kualitas pilihan, dari 360p sampai full HD. Free sampai 720p, supporter sampai 1080p. Lanjutkan nonton di episode terakhir."
+              icon={
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              }
+              title="Velnime Stream Engine"
+              desc="Multi-server waterfall otomatis (beberapa sumber streaming). Bebas buffering dengan opsi kualitas dari 360p hingga full 1080p."
             />
             <FeatureCard
-              icon="🐉"
-              title="Donghua Lengkap"
-              desc="Nonton donghua China 3D favoritmu dengan streaming HLS sampai full HD. Ratusan judul, update cepat."
+              icon={
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10"/><path d="M7 12h10"/><path d="M7 17h10"/></svg>
+              }
+              title="Donghua China 3D Terpisah"
+              desc="Tab terdedikasi khusus untuk donghua China (Soul Land, Perfect World, dsb) dengan streaming HLS multi-resolusi dan jadwal update harian."
             />
             <FeatureCard
-              icon="🚫"
-              title="Bebas Iklan"
-              desc="Tanpa iklan mengganggu. Pengalaman bersih didukung donasi dari pengguna."
+              icon={
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+              }
+              title="100% Bebas Iklan"
+              desc="Tanpa banner mengganggu, pop-up judi, atau redirect iklan. Seluruh biaya server didukung murni oleh donasi sukarela komunitas."
             />
             <FeatureCard
-              icon="⚡"
-              title="Update Cepat"
-              desc="Episode baru muncul kurang dari 5 menit setelah rilis. Jadwal update harian yang konsisten."
+              icon={
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              }
+              title="Download Offline"
+              desc="Unduh episode favorit langsung ke penyimpanan HP melalui Download Engine terintegrasi untuk ditonton tanpa kuota internet."
             />
             <FeatureCard
-              icon="🤖"
-              title="Bot Komunitas"
-              desc="Update rilis otomatis ke channel Discord atau Telegram kamu, gratis via feed API publik."
+              icon={
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              }
+              title="Komunitas & Pangkat Sosial"
+              desc="Komentar per episode, balasan, rating bintang 1-5, lencana badge donatur, dan tingkat pangkat member (Member Baru s/d Tetua Wibu)."
             />
             <FeatureCard
-              icon="🔒"
-              title="Privasi Terjaga"
-              desc="Data kamu aman. Login opsional — anonim sepenuhnya didukung, guest bisa browse tanpa akun."
-            />
-            <FeatureCard
-              icon="💖"
-              title="Didukung Komunitas"
-              desc="Dibangun oleh developer independen. Setiap donasi membantu server dan pengembangan."
+              icon={
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              }
+              title="Privasi & Zero-Leak"
+              desc="Arsitektur Opaque Token melindungi privasi Anda. Login Google bersifat opsional dan data pengguna tersinkronisasi aman."
             />
           </div>
         </section>
 
-        {/* CTA */}
+        {/* CTA Section */}
         <section className="py-16 sm:py-24">
           <div className="rounded-2xl border border-accent/20 bg-surface p-10 text-center sm:p-16">
-            <h2 className="font-display text-2xl font-bold tracking-tight sm:text-4xl">
-              Bantu Velnime tetap hidup
+            <h2 className="font-display text-2xl font-bold tracking-tight sm:text-4xl text-ink">
+              Dukung Velnime Tetap Aktif
             </h2>
             <p className="mx-auto mt-4 max-w-md text-inkDim">
-              Server, domain, dan pengembangan butuh biaya. Donasi mulai Rp 5.000 via QRIS.
+              Server, dedicated media plane, dan operasional butuh biaya. Donasi mulai Rp 5.000 via QRIS otomatis.
             </p>
             <Link
               href="/donate"
-              className="mt-8 inline-block rounded-xl bg-accent px-8 py-3.5 font-display text-sm font-bold text-canvas transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-accent px-8 py-3.5 font-display text-sm font-bold text-canvas transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
-              Donasi Sekarang
+              <span>Donasi Sekarang</span>
             </Link>
           </div>
         </section>
+
       </div>
     </div>
   );
 }
 
-function FeatureCard({ icon, title, desc }: { icon: string; title: string; desc: string }) {
+function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
   return (
     <div className="rounded-xl border border-white/5 bg-surface p-6 transition-colors duration-200 hover:border-accent/30 hover:bg-surfaceSoft">
-      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-surfaceSoft text-xl" aria-hidden="true">
+      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-surfaceSoft text-accent" aria-hidden="true">
         {icon}
       </div>
-      <h3 className="font-display text-lg font-bold">{title}</h3>
+      <h3 className="font-display text-lg font-bold text-ink">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-inkDim">{desc}</p>
     </div>
   );
