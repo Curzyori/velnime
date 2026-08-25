@@ -66,7 +66,7 @@ export default function ApiPage() {
       "episode_number": 14,
       "episode_title": "Episode 14",
       "type": "anime",
-      "poster_url": "https://api.velnime.com/v1/poster?token=...",
+      "poster_url": "https://api.velnime.com/v1/poster/anime/re-zero-s4.webp?s=ff77569292a6ba17",
       "download_app_url": "https://velnime.com",
       "released_at": "August 23, 2026"
     }
