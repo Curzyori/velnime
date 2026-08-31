@@ -12,6 +12,9 @@ export default function Footer() {
           </a>
         </p>
         <div className="flex items-center gap-6 text-sm text-inkDim">
+          <Link href="/about" className="flex min-h-11 items-center transition-colors hover:text-ink">
+            Tentang
+          </Link>
           <Link href="/privacy" className="flex min-h-11 items-center transition-colors hover:text-ink">
             Privacy
           </Link>
