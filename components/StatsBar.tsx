@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const API_BASE = 'https://api.velnime.com/v1';
 
@@ -25,7 +25,8 @@ export default function StatsBar() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [failed, setFailed] = useState(false);
 
-  useEffect(() => {
+  const load = useCallback(() => {
+    setFailed(false);
     const ctrl = new AbortController();
     const timeout = setTimeout(() => ctrl.abort(), 10000);
     fetch(`${API_BASE}/stats`, {
@@ -36,7 +37,6 @@ export default function StatsBar() {
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('stats failed'))))
       .then((d) => {
         if (d && typeof d === 'object') {
-          // Normalize: support flat or nested velnime_app response schema
           const payload = (d as { velnime_app?: Stats }).velnime_app || (d as Stats);
           if (
             typeof payload.users === 'number' ||
@@ -58,14 +58,35 @@ export default function StatsBar() {
         if (err.name !== 'AbortError') setFailed(true);
       })
       .finally(() => clearTimeout(timeout));
-
     return () => {
       clearTimeout(timeout);
       ctrl.abort();
     };
   }, []);
 
-  if (failed) return null;
+  useEffect(() => {
+    const cleanup = load();
+    return cleanup;
+  }, [load]);
+
+  if (failed) {
+    return (
+      <div
+        role="status"
+        aria-live="polite"
+        className="mx-auto mt-10 flex w-full max-w-3xl items-center justify-between gap-4 rounded-2xl border border-white/5 bg-surface px-6 py-4 sm:px-8"
+      >
+        <p className="text-xs text-inkDim sm:text-sm">Gagal memuat statistik · API tidak merespons</p>
+        <button
+          type="button"
+          onClick={load}
+          className="shrink-0 rounded-xl bg-surfaceSoft px-4 py-2 text-xs font-bold text-ink transition-colors hover:bg-accent hover:text-canvas sm:text-sm"
+        >
+          Coba lagi
+        </button>
+      </div>
+    );
+  }
   if (!stats) {
     return (
       <div
