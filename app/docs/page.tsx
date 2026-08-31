@@ -158,7 +158,7 @@ export default function DocsPage() {
                     <tr>
                       <td className="px-4 py-3 font-medium text-ink">Lencana &amp; Identitas</td>
                       <td className="px-4 py-3">Badge pangkat penonton</td>
-                      <td className="px-4 py-3 font-semibold text-amber-400">Badge SUPPORTER / FOUNDER Emas</td>
+                      <td className="px-4 py-3 font-semibold text-amber-400">Badge SUPPORTER Emas</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-3 font-medium text-ink">Sorotan Leaderboard</td>
