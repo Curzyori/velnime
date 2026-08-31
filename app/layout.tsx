@@ -48,7 +48,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         name: 'Velnime',
         url: SITE_URL,
         logo: `${SITE_URL}/favicon.svg`,
-        sameAs: ['https://github.com/Curzyori/velnime'],
+        sameAs: [
+          'https://github.com/Curzyori/velnime',
+          'https://discord.gg/VzdCY7HK7f',
+          'https://instagram.com/velnimeapp',
+          'https://threads.net/@velnimeapp',
+        ],
       },
       {
         '@type': 'SoftwareApplication',

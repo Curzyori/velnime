@@ -11,10 +11,9 @@ export default function Footer() {
             admin@velnime.com
           </a>
         </p>
-        <div className="flex items-center gap-6 text-sm text-inkDim">
-          <Link href="/about" className="flex min-h-11 items-center transition-colors hover:text-ink">
-            Tentang
-          </Link>
+
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-inkDim">
+          {/* Legal / Policy Links */}
           <Link href="/privacy" className="flex min-h-11 items-center transition-colors hover:text-ink">
             Privacy
           </Link>
@@ -24,7 +23,42 @@ export default function Footer() {
           <Link href="/dmca" className="flex min-h-11 items-center transition-colors hover:text-ink">
             DMCA
           </Link>
-          <a href="https://github.com/Curzyori/velnime" target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center transition-colors hover:text-ink">
+
+          {/* Social Media & Community Links */}
+          <a
+            href="https://discord.gg/VzdCY7HK7f"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Discord Velnime Community"
+            className="flex min-h-11 items-center transition-colors hover:text-accent"
+          >
+            Discord
+          </a>
+          <a
+            href="https://instagram.com/velnimeapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Instagram @velnimeapp"
+            className="flex min-h-11 items-center transition-colors hover:text-accent"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://threads.net/@velnimeapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Threads @velnimeapp"
+            className="flex min-h-11 items-center transition-colors hover:text-accent"
+          >
+            Threads
+          </a>
+          <a
+            href="https://github.com/Curzyori/velnime"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub Repository"
+            className="flex min-h-11 items-center transition-colors hover:text-ink"
+          >
             GitHub
           </a>
         </div>
