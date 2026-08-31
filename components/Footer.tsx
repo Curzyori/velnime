@@ -12,12 +12,6 @@ export default function Footer() {
           </a>
         </p>
         <div className="flex items-center gap-6 text-sm text-inkDim">
-          <Link href="/downloads" className="flex min-h-11 items-center transition-colors hover:text-ink">
-            Downloads
-          </Link>
-          <Link href="/docs" className="flex min-h-11 items-center transition-colors hover:text-ink">
-            Docs
-          </Link>
           <Link href="/privacy" className="flex min-h-11 items-center transition-colors hover:text-ink">
             Privacy
           </Link>

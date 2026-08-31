@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -15,14 +15,28 @@ const LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [inboxOpen, setInboxOpen] = useState(false);
+  const inboxRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape — menu mobile
+  // Close dropdown on click outside or Escape
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
+    const onClickOutside = (e: MouseEvent) => {
+      if (inboxRef.current && !inboxRef.current.contains(e.target as Node)) {
+        setInboxOpen(false);
+      }
     };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        setInboxOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onClickOutside);
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onClickOutside);
+      window.removeEventListener('keydown', onKey);
+    };
   }, []);
 
   return (
@@ -41,17 +55,49 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
-          
-          {/* Update / Releases Material Icon Indicator */}
-          <Link
-            href="/downloads"
-            title="Update & Versi Terbaru"
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-inkDim transition-colors duration-200 hover:bg-surface hover:text-accent"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-            </svg>
-          </Link>
+
+          {/* Inbox / Notification Dropdown */}
+          <div className="relative ml-1" ref={inboxRef}>
+            <button
+              type="button"
+              onClick={() => setInboxOpen((prev) => !prev)}
+              title="Pusat Informasi & Pemberitahuan"
+              aria-expanded={inboxOpen}
+              aria-label="Pemberitahuan"
+              className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-surface hover:text-accent ${inboxOpen ? 'bg-surface text-accent' : 'text-inkDim'}`}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0" />
+              </svg>
+            </button>
+
+            {/* Inbox Popover / Dropdown Card */}
+            {inboxOpen && (
+              <div className="absolute right-0 top-12 z-50 w-80 rounded-2xl border border-white/10 bg-surface/95 p-4 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="flex items-center justify-between border-b border-white/5 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-2 w-2 rounded-full bg-accent" />
+                    <h3 className="font-display text-sm font-bold text-ink">Informasi &amp; Pengumuman</h3>
+                  </div>
+                  <span className="text-[10px] font-semibold text-inkDim">0 Baru</span>
+                </div>
+
+                <div className="py-6 text-center">
+                  <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-inkDim">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                  </div>
+                  <p className="text-xs font-medium text-ink">Belum Ada Informasi Baru</p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-inkDim">
+                    Pengumuman rilis, maintenance server, dan pembaruan sistem akan muncul di sini.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Mobile toggle */}
@@ -84,6 +130,19 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
+
+            {/* Mobile Inbox Notice Box */}
+            <div className="mt-3 rounded-xl border border-white/5 bg-surface/70 p-3.5">
+              <div className="flex items-center gap-2">
+                <svg width="16" height="16" className="text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span className="text-xs font-bold text-ink">Informasi Terkini</span>
+              </div>
+              <p className="mt-1.5 text-xs text-inkDim">
+                Belum ada informasi baru saat ini.
+              </p>
+            </div>
           </div>
         </div>
       )}

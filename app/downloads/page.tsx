@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Download APK Velnime — Versi Terbaru & Riwayat Rilis',
+  title: 'Download APK Velnime — Pusat Unduhan Resmi',
   description:
-    'Download APK Velnime for Android versi terbaru gratis. Bebas iklan, streaming anime & donghua multi-resolusi, dan riwayat changelog resmi.',
+    'Download APK Velnime for Android. Bebas iklan, streaming anime & donghua multi-resolusi, dan sistem cloud sync terpadu.',
   alternates: { canonical: '/downloads' },
   openGraph: {
-    title: 'Download APK Velnime — Versi Terbaru',
-    description: 'Download APK Velnime for Android versi terbaru gratis.',
+    title: 'Download APK Velnime — Pusat Unduhan Resmi',
+    description: 'Download APK Velnime for Android. Bebas iklan dan streaming lancar.',
     url: 'https://www.velnime.com/downloads',
     siteName: 'Velnime',
     type: 'website',
@@ -16,58 +17,25 @@ export const metadata: Metadata = {
   },
 };
 
-const RELEASES = [
-  {
-    version: 'v2.0.1',
-    code: '4',
-    date: '25 Agustus 2026',
-    tag: 'Latest Stable',
-    isLatest: true,
-    apkUrl: 'https://github.com/Curzyori/velnime/releases/latest',
-    highlights: [
-      'Arsitektur Zero-Leak Media Routing (Anti-Scraping Token & Proteksi Origin Scraper).',
-      'Download Engine Offline (Unduh stream direct ke penyimpanan lokal HP).',
-      '2-Phase Stream Split: Rendering UI metadata & episode instan saat video buffer.',
-      'Swipe-to-delete riwayat tontonan di Library.',
-      'Optimalisasi Supabase query & caching Redis.',
-    ],
-  },
-  {
-    version: 'v2.0.0',
-    code: '3',
-    date: '24 Agustus 2026',
-    tag: 'Major Release',
-    isLatest: false,
-    apkUrl: 'https://github.com/Curzyori/velnime/releases/tag/v2.0.0',
-    highlights: [
-      'Rilis perdana katalog terpadu ODv3 (2.434 Judul & 39.196 Episode).',
-      'Integrasi Dedicated Media Plane Shine NAT.',
-      'Sistem Pangkat & Level Pengguna (Member Baru, Member Senior, Tetua Wibu).',
-      'Komentar per episode dengan dukungan balasan & report.',
-      'Dukungan Donghua China 3D terdedikasi.',
-    ],
-  },
-];
-
 export default function DownloadsPage() {
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <div className="mx-auto w-full max-w-4xl flex-1 px-4 py-12 sm:px-6 sm:py-16">
-        
+
         {/* Header Hero */}
         <section className="text-center">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accentFaded px-4 py-1.5 text-xs font-semibold text-accent">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Pusat Unduhan Resmi
           </span>
-          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tighter sm:text-5xl">
+          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tighter text-ink sm:text-5xl">
             Unduh <span className="text-accent">Velnime for Android</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base text-inkDim sm:text-lg">
-            Nonton anime &amp; donghua gratis, tanpa iklan. Selalu perbarui aplikasi ke versi terbaru untuk performa terbaik.
+            Nonton anime &amp; donghua gratis, tanpa iklan. Nikmati pengalaman streaming lancar dan download offline langsung di HP kamu.
           </p>
 
-          {/* Primary Download Button */}
+          {/* Primary Download Button (Pre-Release) */}
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <span
               className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/10 bg-surface px-8 py-3.5 font-display text-base font-bold text-inkDim cursor-not-allowed"
@@ -77,54 +45,31 @@ export default function DownloadsPage() {
               <span>Aplikasi Segera Rilis</span>
             </span>
           </div>
-          <p className="mt-3 text-xs text-inkDim">Tahap audit &amp; finalisasi sistem sedang berlangsung · Pantau untuk jadwal rilis</p>
+          <p className="mt-3 text-xs text-inkDim">Tahap audit &amp; finalisasi sistem sedang berlangsung · Pantau untuk jadwal rilis publik</p>
         </section>
 
-        {/* Release History & Changelog */}
-        <section className="mt-16">
-          <h2 className="flex items-center gap-2.5 font-display text-2xl font-bold text-ink">
-            <svg width="22" height="22" className="text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            Riwayat Versi &amp; Changelog
-          </h2>
-
-          <div className="mt-6 space-y-6">
-            {RELEASES.map((rel) => (
-              <div
-                key={rel.version}
-                className={`rounded-2xl border p-6 sm:p-8 transition-colors ${rel.isLatest ? 'border-accent/40 bg-surface' : 'border-white/5 bg-surface/50'}`}
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <span className="font-display text-2xl font-bold text-ink">{rel.version}</span>
-                    <span className={`rounded-md px-2.5 py-0.5 text-xs font-bold ${rel.isLatest ? 'bg-accent text-canvas' : 'bg-surfaceSoft text-inkDim'}`}>
-                      {rel.tag}
-                    </span>
-                  </div>
-                  <span className="text-xs text-inkDim">{rel.date}</span>
-                </div>
-
-                <ul className="mt-5 space-y-2 text-sm text-inkDim list-disc pl-5">
-                  {rel.highlights.map((h, i) => (
-                    <li key={i} className="leading-relaxed">
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
-                  <span className="text-xs text-inkDim">Build #{rel.code}</span>
-                  <a
-                    href={rel.apkUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline"
-                  >
-                    <span>Unduh APK ({rel.version})</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                  </a>
-                </div>
+        {/* Pre-Release Information Box */}
+        <section className="mt-14">
+          <div className="rounded-2xl border border-white/5 bg-surface/60 p-6 sm:p-8 text-center sm:text-left">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                </svg>
               </div>
-            ))}
+              <div className="flex-1">
+                <h2 className="font-display text-lg font-bold text-ink">Informasi Rilis Resmi</h2>
+                <p className="mt-1 text-sm text-inkDim">
+                  Paket APK resmi dan catatan pembaruan versi (changelog) akan dipublikasikan di halaman ini saat peluncuran resmi Velnime Android dibuka untuk umum.
+                </p>
+              </div>
+              <Link
+                href="/docs"
+                className="shrink-0 rounded-xl bg-surfaceSoft border border-white/10 px-4 py-2.5 text-xs font-semibold text-ink transition-colors hover:bg-surface hover:text-accent"
+              >
+                Pelajari Fitur di Docs
+              </Link>
+            </div>
           </div>
         </section>
 
