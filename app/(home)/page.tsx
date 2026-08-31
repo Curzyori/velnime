@@ -10,7 +10,7 @@ export default function HomePage() {
         <section className="flex flex-col items-center py-20 text-center sm:py-28">
           <span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accentFaded px-4 py-1.5 text-xs font-semibold text-accent">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            Gratis · Bebas Iklan · Tanpa Sensor
+            Gratis · Bebas Iklan · Didukung Komunitas
           </span>
           <h1 className="font-display max-w-3xl text-4xl font-bold leading-[1.05] tracking-tighter text-ink sm:text-6xl">
             Streaming anime &amp; donghua,
