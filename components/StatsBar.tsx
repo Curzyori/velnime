@@ -28,24 +28,37 @@ export default function StatsBar() {
   useEffect(() => {
     const ctrl = new AbortController();
     const timeout = setTimeout(() => ctrl.abort(), 10000);
-    fetch(`${API_BASE}/stats`, { signal: ctrl.signal })
+    fetch(`${API_BASE}/stats`, {
+      method: 'GET',
+      headers: { Accept: 'application/json' },
+      signal: ctrl.signal,
+    })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('stats failed'))))
       .then((d) => {
-        if (
-          d &&
-          typeof d === 'object' &&
-          typeof (d as Stats).users === 'number' &&
-          typeof (d as Stats).downloads === 'number'
-        ) {
-          setStats(d as Stats);
-        } else {
-          setFailed(true);
+        if (d && typeof d === 'object') {
+          // Normalize: support flat or nested velnime_app response schema
+          const payload = (d as { velnime_app?: Stats }).velnime_app || (d as Stats);
+          if (
+            typeof payload.users === 'number' ||
+            typeof payload.downloads === 'number' ||
+            payload.catalog
+          ) {
+            setStats({
+              users: payload.users ?? 0,
+              downloads: payload.downloads ?? 0,
+              total_views: payload.total_views ?? 0,
+              catalog: payload.catalog,
+            });
+            return;
+          }
         }
+        setFailed(true);
       })
       .catch((err) => {
         if (err.name !== 'AbortError') setFailed(true);
       })
       .finally(() => clearTimeout(timeout));
+
     return () => {
       clearTimeout(timeout);
       ctrl.abort();
@@ -70,7 +83,7 @@ export default function StatsBar() {
     ...(totalTitles > 0 ? [{ value: fmtNum(totalTitles), label: 'Judul Anime & Donghua' }] : []),
     ...(totalEpisodes > 0 ? [{ value: fmtNum(totalEpisodes), label: 'Episode Siap Tonton' }] : []),
     ...(stats.users > 0 ? [{ value: fmtNum(stats.users), label: 'Pengguna Aktif' }] : []),
-    { value: fmtNum(stats.downloads), label: 'Download APK' },
+    ...(stats.downloads > 0 ? [{ value: fmtNum(stats.downloads), label: 'Download APK' }] : []),
   ];
 
   if (items.length === 0) return null;

@@ -20,7 +20,7 @@ export default function ApiPage() {
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <div className="mx-auto w-full max-w-4xl flex-1 px-4 py-16 sm:px-6 sm:py-20">
-        
+
         {/* Header Hero */}
         <section className="text-center">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accentFaded px-4 py-1.5 text-xs font-semibold text-accent">
@@ -38,7 +38,7 @@ export default function ApiPage() {
 
         {/* 3 API Cards Section */}
         <div className="mt-14 space-y-12">
-          
+
           {/* API 1: Real-time Feed Updates */}
           <section className="rounded-2xl border border-white/10 bg-surface p-6 sm:p-8">
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -95,11 +95,31 @@ export default function ApiPage() {
             </div>
 
             <p className="mt-4 text-sm text-inkDim">
-              Menyediakan data statistik transparansi platform secara realtime: total pengguna aktif, total jam tontonan, total episode, dan total donasi komunitas.
+              Menyediakan data statistik transparansi platform secara realtime: total pengguna aktif, total judul anime &amp; donghua, total episode siap tonton, dan metrik donasi.
             </p>
 
             <div className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-surfaceSoft p-4">
               <code className="text-sm text-accent">GET https://api.velnime.com/v1/stats</code>
+            </div>
+
+            <div className="mt-4 rounded-xl border border-white/5 bg-[#0B0B14] p-4 text-xs font-mono text-inkDim">
+              <p className="text-ink font-bold mb-2">Contoh Response Payload:</p>
+              <pre className="text-xs text-emerald-400 overflow-x-auto">
+{`{
+  "velnime_app": {
+    "users": 6,
+    "downloads": 0,
+    "total_views": 0,
+    "donations": 8674,
+    "catalog": {
+      "total_titles": 2434,
+      "total_episodes": 39280,
+      "total_anime": 1918,
+      "total_donghua": 516
+    }
+  }
+}`}
+              </pre>
             </div>
           </section>
 
