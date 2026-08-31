@@ -64,7 +64,7 @@
   <!-- Backdrop Glow -->
   <circle cx="256" cy="256" r="180" fill="url(#ambient-glow)"/>
 
-  <!-- Manga Speed Lines Effect -->
+  <!-- Animation Speed Lines Effect -->
   <g opacity="0.07" stroke="#F1F5F9" stroke-width="2" stroke-linecap="round">
     <line x1="256" y1="256" x2="60" y2="60"/>
     <line x1="256" y1="256" x2="452" y2="60"/>
@@ -77,7 +77,7 @@
   <!-- MAIN LOGO MARK: "V" Emblem -->
   <g transform="translate(0, 8)">
 
-    <!-- LEFT WING: Layered Manga / Comic Book Pages -->
+    <!-- LEFT WING: Layered Animation Frames -->
     <path d="M 124 138 C 124 138, 172 260, 226 352 L 182 352 C 142 278, 100 182, 100 182 Z" fill="url(#primary-orange)" opacity="0.85"/>
     <path d="M 152 124 C 152 124, 196 240, 244 380 L 204 380 C 166 268, 126 156, 126 156 Z" fill="url(#orange-light)"/>
     <path d="M 184 110 C 184 110, 222 230, 256 408 L 222 408 C 190 270, 154 138, 154 138 Z" fill="url(#primary-orange)" filter="url(#neon-glow-orange)"/>
@@ -91,7 +91,7 @@
     <polygon points="220,204 220,300 300,252" fill="url(#primary-orange)"/>
     <polygon points="228,218 228,286 284,252" fill="url(#accent-cyan-grad)"/>
 
-    <!-- Manga Speed Slash across Play Button -->
+    <!-- Dynamic Speed Slash across Play Button -->
     <path d="M 200 236 L 320 220 L 310 232 L 190 248 Z" fill="#0F0F1A" opacity="0.9"/>
 
     <!-- TOP ACCENT: Anime Sparkle Star -->
