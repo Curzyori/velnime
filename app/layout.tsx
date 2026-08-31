@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'WebSite', name: 'Velnime', url: SITE_URL },
+      { '@type': 'WebSite', name: 'Velnime', url: SITE_URL, inLanguage: 'id-ID' },
       {
         '@type': 'Organization',
         name: 'Velnime',
@@ -51,15 +51,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         sameAs: ['https://github.com/Curzyori/velnime'],
       },
       {
-        // SEO-1: SoftwareApplication — schema khusus aplikasi (Google bisa tampilkan
-        // rich result "app" di pencarian Android).
         '@type': 'SoftwareApplication',
         name: 'Velnime',
         applicationCategory: 'EntertainmentApplication',
-        operatingSystem: 'Android',
+        operatingSystem: 'Android 7.0 and up',
         url: SITE_URL,
+        inLanguage: 'id-ID',
         description: 'Streaming anime Jepang dan donghua China gratis, bebas iklan.',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'IDR' },
+        screenshot: [
+          `${SITE_URL}/preview/home.svg`,
+          `${SITE_URL}/preview/player.svg`,
+          `${SITE_URL}/preview/detail.svg`,
+        ],
       },
     ],
   };
