@@ -93,8 +93,9 @@ export default function DonatePage() {
   const [successData, setSuccessData] = useState<{ amount: number; name?: string } | null>(null);
   const [topDonations, setTopDonations] = useState<TopDonation[]>([]);
   const [topState, setTopState] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [totalDonations, setTotalDonations] = useState<number | null>(null);
 
-  // Fetch top donations
+  // Fetch top donations + total terkumpul
   const loadTop = useCallback(() => {
     const ctrl = new AbortController();
     const timeout = setTimeout(() => ctrl.abort(), 10000);
@@ -106,6 +107,11 @@ export default function DonatePage() {
       })
       .then((data) => {
         setTopDonations(parseDonations(data));
+        if (data && typeof data === 'object' && typeof (data as { monthly_total?: unknown }).monthly_total === 'number') {
+          setTotalDonations((data as { monthly_total: number }).monthly_total);
+        } else if (data && typeof data === 'object' && typeof (data as { total?: unknown }).total === 'number') {
+          setTotalDonations((data as { total: number }).total);
+        }
         setTopState('ready');
       })
       .catch((err) => {
@@ -117,6 +123,25 @@ export default function DonatePage() {
       ctrl.abort();
     };
   }, []);
+
+  // Fetch total terkumpul dari /stats (fallback jika donate/top tidak kasih total)
+  useEffect(() => {
+    if (totalDonations !== null) return;
+    const ctrl = new AbortController();
+    const timeout = setTimeout(() => ctrl.abort(), 10000);
+    fetch(`${API_BASE}/stats`, { headers: { Accept: 'application/json' }, signal: ctrl.signal })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('stats failed'))))
+      .then((d) => {
+        const v = (d as { velnime_app?: { donations?: number } }).velnime_app?.donations;
+        if (typeof v === 'number') setTotalDonations(v);
+      })
+      .catch(() => {})
+      .finally(() => clearTimeout(timeout));
+    return () => {
+      clearTimeout(timeout);
+      ctrl.abort();
+    };
+  }, [totalDonations]);
 
   useEffect(() => loadTop(), [loadTop]);
 
@@ -364,6 +389,18 @@ export default function DonatePage() {
             </form>
           )}
         </div>
+
+        {/* Total Terkumpul Banner */}
+        {totalDonations !== null && (
+          <div className="mt-10 rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 via-surface to-surface px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-inkDim">Total Donasi Terkumpul</p>
+              <p className="font-display mt-1 text-2xl font-bold text-accent sm:text-3xl">{fmtIDR(totalDonations)}</p>
+              <p className="mt-1 text-xs text-inkDim">Dari komunitas untuk operasional server &amp; domain</p>
+            </div>
+            <span className="shrink-0 rounded-full bg-emerald-500/10 px-3 py-1.5 text-xs font-bold text-emerald-400">Transparan · Real-time</span>
+          </div>
+        )}
 
         {/* Top Donations */}
         <div className="mt-12">
