@@ -82,7 +82,7 @@ export default function StatsBar() {
   const items = [
     ...(totalTitles > 0 ? [{ value: fmtNum(totalTitles), label: 'Judul Anime & Donghua' }] : []),
     ...(totalEpisodes > 0 ? [{ value: fmtNum(totalEpisodes), label: 'Episode Siap Tonton' }] : []),
-    ...(stats.users > 0 ? [{ value: fmtNum(stats.users), label: 'Pengguna Aktif' }] : []),
+    ...(stats.users >= 10 ? [{ value: fmtNum(stats.users), label: 'Pengguna Aktif' }] : []),
     ...(stats.downloads > 0 ? [{ value: fmtNum(stats.downloads), label: 'Download APK' }] : []),
   ];
 
