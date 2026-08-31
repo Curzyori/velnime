@@ -4,13 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const LINKS = [
-  { href: '/', label: 'Beranda' },
-  { href: '/about', label: 'Tentang' },
-  { href: '/api', label: 'API' },
+const MAIN_LINKS = [
   { href: '/docs', label: 'Docs' },
   { href: '/downloads', label: 'Downloads' },
-  { href: '/donate', label: 'Donasi' },
+  { href: '/about', label: 'Tentang' },
+  { href: '/api', label: 'API' },
 ];
 
 export default function Navbar() {
@@ -43,38 +41,57 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-canvas/80 backdrop-blur-md">
       <nav aria-label="Navigasi utama" className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-1.5 font-display text-lg font-bold tracking-tight" onClick={() => setOpen(false)}>
+        {/* Brand / Logo (Klik = Beranda) */}
+        <Link href="/" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight" onClick={() => setOpen(false)}>
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, next/image unoptimized */}
           <img src="/favicon.svg" alt="Velnime" width={30} height={30} className="rounded-lg" />
           <span className="bg-gradient-to-r from-white via-white/90 to-accent bg-clip-text text-transparent">velnime.com</span>
         </Link>
 
-        {/* Desktop Links */}
+        {/* Desktop Navigation Links */}
         <div className="hidden items-center gap-1 md:flex">
-          {LINKS.map((l) => (
+          {MAIN_LINKS.map((l) => (
             <NavLink key={l.href} href={l.href} active={pathname === l.href}>
               {l.label}
             </NavLink>
           ))}
+        </div>
 
-          {/* Inbox / Notification Dropdown */}
-          <div className="relative ml-1" ref={inboxRef}>
+        {/* Action Controls: Donasi CTA Button + Inbox Popover */}
+        <div className="hidden items-center gap-2.5 md:flex">
+          {/* Donasi Button CTA */}
+          <Link
+            href="/donate"
+            className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98] ${
+              pathname === '/donate'
+                ? 'bg-accent text-canvas shadow-lg shadow-accent/20'
+                : 'border border-accent/40 bg-accent/10 text-accent hover:bg-accent hover:text-canvas'
+            }`}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+            <span>Donasi</span>
+          </Link>
+
+          {/* Inbox Notification Icon */}
+          <div className="relative" ref={inboxRef}>
             <button
               type="button"
               onClick={() => setInboxOpen((prev) => !prev)}
               title="Pusat Informasi & Pemberitahuan"
               aria-expanded={inboxOpen}
               aria-label="Pemberitahuan"
-              className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-surface hover:text-accent ${inboxOpen ? 'bg-surface text-accent' : 'text-inkDim'}`}
+              className={`flex h-9 w-9 items-center justify-center rounded-xl border border-white/5 transition-colors duration-200 hover:bg-surface hover:text-accent ${
+                inboxOpen ? 'bg-surface text-accent border-accent/30' : 'bg-surface/50 text-inkDim'
+              }`}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0" />
               </svg>
             </button>
 
             {/* Inbox Popover / Dropdown Card */}
             {inboxOpen && (
-              <div className="absolute right-0 top-12 z-50 w-80 rounded-2xl border border-white/10 bg-surface/95 p-4 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="absolute right-0 top-11 z-50 w-80 rounded-2xl border border-white/10 bg-surface/95 p-4 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200">
                 <div className="flex items-center justify-between border-b border-white/5 pb-3">
                   <div className="flex items-center gap-2">
                     <span className="flex h-2 w-2 rounded-full bg-accent" />
@@ -101,7 +118,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile menu toggle */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -116,21 +133,33 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu dropdown */}
       {open && (
         <div id="mobile-menu" className="border-t border-white/5 bg-canvas/95 px-4 pb-4 backdrop-blur-md md:hidden">
-          <div className="flex flex-col pt-2">
-            {LINKS.map((l) => (
+          <div className="flex flex-col pt-2 gap-1">
+            {MAIN_LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 aria-current={pathname === l.href ? 'page' : undefined}
-                className={`flex min-h-12 items-center rounded-lg px-3 text-sm font-medium transition-colors hover:bg-surface hover:text-ink ${pathname === l.href ? 'text-accent' : 'text-inkDim'}`}
+                className={`flex min-h-12 items-center rounded-lg px-3 text-sm font-medium transition-colors hover:bg-surface hover:text-ink ${
+                  pathname === l.href ? 'text-accent bg-surfaceSoft/60' : 'text-inkDim'
+                }`}
               >
                 {l.label}
               </Link>
             ))}
+
+            {/* Mobile Donasi CTA Link */}
+            <Link
+              href="/donate"
+              onClick={() => setOpen(false)}
+              className="mt-2 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-accent px-4 text-sm font-bold text-canvas shadow-md shadow-accent/20"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+              <span>Dukung Velnime (Donasi)</span>
+            </Link>
 
             {/* Mobile Inbox Notice Box */}
             <div className="mt-3 rounded-xl border border-white/5 bg-surface/70 p-3.5">
@@ -156,7 +185,9 @@ function NavLink({ href, active, children }: { href: string; active: boolean; ch
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
-      className={`flex min-h-10 items-center rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 hover:bg-surface hover:text-ink ${active ? 'bg-surfaceSoft text-accent' : 'text-inkDim'}`}
+      className={`flex min-h-10 items-center rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 hover:bg-surface hover:text-ink ${
+        active ? 'bg-surfaceSoft text-accent' : 'text-inkDim'
+      }`}
     >
       {children}
     </Link>
